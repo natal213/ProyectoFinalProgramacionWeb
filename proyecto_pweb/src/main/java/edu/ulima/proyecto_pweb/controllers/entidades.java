@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class principal {
+@RequestMapping("/")
+public class entidades {
     /*
-    Este metodo responde a welcome page
-    EJEM: hhtp://locahost:8080
+    Este metodo responde a entidades
+    EJEM: http://locahost:8080/entidades.html
     */
-    @RequestMapping(value="/", method=RequestMethod.GET)
-    public String index(Model model, HttpSession session){
-        return "login";
+    @RequestMapping(value="/entidades.html", method=RequestMethod.GET)
+    public String entidad(Model model, HttpSession session){
+        return "entidades";
     }
+   
 }
