@@ -57,41 +57,40 @@
             </div>
         </nav>
     </header>
+
     <div class="container-fluid mis-datos">
         <h2 class="title">Mis Datos</h2>
-        <form>
+        <form autocomplete="off">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputNombre">Nombre</label>
-                    <input type="text" class="form-control" id="inputNombre">
+                    <input type="text" class="form-control inputMisDatos car" id="inputNombre" data-campo="nombre" maxlength="100" disabled>
+                    
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputApellido">Apellido Paterno</label>
-                    <input type="text" class="form-control" id="inputApellido">
+                    <input type="text" class="form-control inputMisDatos car" id="inputApellido" data-campo="apellido" maxlength="100" disabled>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputTelefono">Tel&eacutefono Celular</label>
-                    <input type="text" class="form-control" id="inputTelefono">
+                    <input type="text" class="form-control inputMisDatos" id="inputTelefono" data-campo="telefono" disabled>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputLink">LinkedIn Url</label>
-                    <input type="text" class="form-control" id="inputLink">
+                    <input type="text" class="form-control inputMisDatos" id="inputLink" data-campo="link" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Datos Relevantes</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                <textarea class="form-control inputMisDatos" id="exampleFormControlTextarea1" rows="5" data-campo="datos" disabled></textarea>
             </div>
             <div class="form-row justify-content-center">
-                <button type="submit" class="btn btn-primary" id ="btnguardar" disabled>Guardar</button>
+                <button id="btnCancelar" class="btn btn-primary mr-4" hidden>Cancelar</button>
+                <button id="btnMisDatos" class="btn btn-primary">Actualizar</button>
             </div>
         </form>
-        <div id="mensaje">
-          <p>Para guardar, por favor complete como mínimo los siguientes campos:
-            Nombre, apellido paterno y tel&eacutefono</p>
-        </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -100,5 +99,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="../js/mis-datos.js"></script>
 </body>
-
 </html>
