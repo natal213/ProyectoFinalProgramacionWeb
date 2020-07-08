@@ -1,3 +1,5 @@
+//CODIGO JS PURO
+/*
 //Limitar el area de texto para datos relevantes en 5 lineas
 var contenidotextarea="";
 var campodatosrelev=document.getElementById("exampleFormControlTextarea1");
@@ -172,4 +174,188 @@ else{
     m4f="";
 }
 verificarcampos();    
+}
+*/
+
+//CODIGO UTILIZANDO FRAMEWORKS
+var modo ="actualizar";
+var mensajetexto="";
+var estados = {
+    nombre:false,
+    apellido:false,
+    telefono:false,
+    link:false,
+    datos:false
+}
+
+//Limitar el area de texto para datos relevantes en 5 lineas
+var contenidotextarea="";
+var campodatosrelev=document.getElementById("exampleFormControlTextarea1");
+campodatosrelev.addEventListener("keypress",function(){
+    verificarlineas(this);
+},true);
+
+function verificarlineas(obj){
+    var contenidolin=obj.value.split("\n");
+    var contenidocar=obj.value.length+1;
+    console.log(contenidocar);
+    console.log(obj.clientWidth);
+    console.log(obj.clienteWidth-24);
+        if (contenidolin.length>5 || contenidocar>(obj.clientWidth-24)/9.59*5.0){
+            obj.value=contenidotextarea;
+        }
+        else{
+            contenidotextarea=obj.value;
+        }
+}
+
+
+$("#btnMisDatos").on('click',function (e){
+    e.preventDefault();
+
+    switch (modo) {
+        case "actualizar":
+            $(".inputMisDatos").each(function (index){
+                $(this).removeAttr("disabled");
+            });
+            $("#btnCancelar").removeAttr("hidden");
+            $(this).text("Guardar");
+            $(this).attr("disabled",true)
+            modo="guardar";
+            break;
+        
+        case "guardar":
+        
+            break;
+    
+        default:
+            break;
+    }
+});
+
+$(".car").on('keyup',function(){
+    var nodoref=$(this).next();
+    console.log("ahhhh");
+    nodoref.remove();
+    var carres=100-this.value.length;
+    var caracteres=document.createElement("div");
+    caracteres.textContent="Caracteres restantes: "+carres;
+    caracteres.classList.add("peque");
+    $(this).after(caracteres);
+})
+
+$(".car").on('focus',function(){
+    console.log("algoanda maal")
+    var carres=100-this.value.length;
+    var caracteres=document.createElement("div");
+    caracteres.textContent="Caracteres restantes: "+carres;
+    caracteres.classList.add("peque");
+    $(this).after(caracteres);
+})
+
+$(".inputMisDatos").on('blur',function(){
+    if($(this).next().hasClass("peque")){
+        console.log("quito caracteres");
+        $(this).next().remove();
+    }
+    if($(this).next().hasClass("invalid-feedback")){
+        console.log("lo arruine");
+        $(this).next().remove();
+    }
+    var mensaje= document.createElement("div");
+    if(validar(this.value,this.dataset.campo)){
+        $(this).removeClass("is-invalid");
+        $(this).addClass("is-valid")
+        
+    }else{
+        $(this).removeClass("is-valid");
+        $(this).addClass("is-invalid");
+        mensaje.textContent=mensajetexto;
+        mensaje.classList.add("invalid-feedback");
+        $(this).parent().append(mensaje);
+        console.log($(this).parent().children());
+    }
+
+    if(validarTodo()){
+        $("#btnMisDatos").removeAttr("disabled");
+    }else{
+        $("#btnMisDatos").attr("disabled",true)
+    }
+});
+
+function validar(valor,campo){
+    if (campo=="nombre" || campo=="apellido"){
+        if(/^[A-ZÑñ\s]+$/i.test(valor)){
+            estados.nombre=true;
+            return true;
+        }else{
+            if(valor==""){
+                mensajetexto="Complete este campo";
+            }
+            else{
+                mensajetexto="El "+campo+" debe contener solo letras";
+            }
+            estados.nombre=false;
+            return false;
+        }
+    }
+    else{
+    switch (campo) {
+        case "telefono":
+            if(/^[\d\s]{9}$/i.test(valor)){
+                estados.telefono=true;
+                return true;
+            }else{
+                if(valor==""){
+                    mensajetexto="Complete este campo";
+                }
+                else{
+                    mensajetexto="El teléfono celular debe ser un número de 9 dígitos";
+                }
+                estados.telefono=false;
+                return false;
+            }
+        break;
+
+        case "link":
+            if(/^https:\/\/[a-z]{2,3}\.linkedin\.com\/.*$/gim.test(valor)){
+                estados.link=true;
+                return true;
+            }else{
+                if(valor==""){
+                    mensajetexto="Complete este campo";
+                }
+                else{
+                    mensajetexto="La dirección de Linkedin debe ser válida";
+                }
+                estados.link=false;
+                return false;
+            }
+        break;
+
+        case "datos":
+         if(valor==""){
+             estados.datos=false;
+             mensajetexto="Complete este campo";
+             return false;
+         }else{
+             estados.datos=true;
+             return true;
+         }
+        break;
+        default:
+            break;
+        }
+    }
+}      
+
+
+function validarTodo(){
+    const values= Object.values(estados);  
+    for(value of values){
+        if(!value){
+            return false;
+        }
+    }
+    return true;
 }
