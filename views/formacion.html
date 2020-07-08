@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/817b833d26.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
 </head>
 
 <body>
@@ -140,98 +140,121 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Formaci&oacuten</h5>
+                        <h5 class="modal-title" id="tituloAgregar">Agregar Formaci&oacuten</h5>
                     </div>
-                    <form autocomplete="off">
+                    <form autocomplete="off" id="formularioAgregar">
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="selectTipo">Tipo</label>
-                                    <select class="form-control" id="selectTipo">
+                                    <label for="selectTipoAgregar">Tipo</label>
+                                    <select class="form-control custom-select selectFormacion" id="selectTipoAgregar" data-modal="agregar" data-campo="tipo">
                                         <option disabled selected="selected">Seleccione Tipo...</option>
                                         <option>Curso</option>
                                         <option>Estudio</option>
                                     </select>
+                                    <div class="invalid-feedback tipo">*Se requiere seleccionar un tipo.</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputEntidad">Entidad</label>
-                                    <input type="text" class="form-control" id="inputEntidad">
+                                    <label for="selectEntidadAgregar">Entidad</label>
+                                    <select class="form-control custom-select selectFormacion" id="selectEntidadAgregar" data-modal="agregar" data-campo="entidad">
+                                        <option disabled selected="selected">Seleccione Entidad...</option>
+                                        <option>Entidad 1</option>
+                                        <option>Entidad 2</option>
+                                        <option>Entidad 3</option>
+                                    </select>
+                                    <div class="invalid-feedback entidad">*Se requiere seleccionar una entidad.</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Detalle</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="250"></textarea>
+                                <label for="detalleFormacionAgregar">Detalle</label>
+                                <textarea class="form-control inputDetalle" id="detalleFormacionAgregar" rows="5" maxlength="250" data-modal="agregar" data-campo="detalle"></textarea>
+                                <div class="invalid-feedback detalle">*Se requiere detalle.</div>
                             </div>
-                             
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-md-6">
-                                    <label for="fechaFin">Fecha de Fin</label>
-                                    <input type="date"  class="form-control" id="fechaFin">
+                                    <label for="fechaFinAgregar">Fecha de Fin</label>
+                                    <div class="datepicker date input-group p-0 shadow-sm">
+                                        <input type="text" placeholder="Fecha" class="form-control inputFecha" id="fechaFinAgregar" data-modal="agregar" data-campo="fecha">
+                                        <div class="input-group-append"><span class="input-group-text px-4"><i class="fa fa-calendar"></i></span></div>
+                                        <div class="invalid-feedback fecha">*Se requiere fecha de fin.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input type="radio" id="radio1" name="gender" value="visible" checked>
-                                    <label for="visible">Visible</label><br>
-                                    <input type="radio" id="radio2" name="gender" value="oculto">
-                                    <label for="oculto">Oculto</label><br>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkVisibleAgregar" data-modal="agregar" checked>
+                                    <label class="form-check-label" for="checkVisibleAgregar">
+                                        Visible
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <div id="mensaje1"></div>    
                         <div class="modal-footer">
-                            <button id="cancelar" type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button id="agregar" type="submit" class="btn btn-primary" >Agregar</button>
+                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" id="btnAgregar" class="btn btn-primary" disabled>Agregar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog">
+
+
+        <div class="modal fade" id="actualizarModal" tabindex="-1" role="dialog" data-id="">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Actualizar Formaci&oacuten</h5>
+                        <h5 class="modal-title" id="tituloActualizar">Actualizar Formaci&oacuten</h5>
                     </div>
-                    <form id="form_1" autocomplete="off">
+                    <form autocomplete="off" id="formularioActualizar">
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="selectTipo2">Tipo</label>
-                                    <select class="form-control" id="selectTipo2">
+                                    <label for="selectTipoActualizar">Tipo</label>
+                                    <select class="form-control custom-select selectFormacion" id="selectTipoActualizar" data-modal="actualizar" data-campo="tipo">
                                         <option disabled selected="selected">Seleccione Tipo...</option>
                                         <option>Curso</option>
                                         <option>Estudio</option>
                                     </select>
+                                    <div class="invalid-feedback tipo">*Se requiere seleccionar un tipo.</div>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputEntidad2">Entidad</label>
-                                    <input type="text" class="form-control" id="inputEntidad2">
+                                    <label for="selectEntidadActualizar">Entidad</label>
+                                    <select class="form-control custom-select selectFormacion" id="selectEntidadActualizar" data-modal="actualizar" data-campo="entidad">
+                                        <option disabled selected="selected">Seleccione Entidad...</option>
+                                        <option>Entidad 1</option>
+                                        <option>Entidad 2</option>
+                                        <option>Entidad 3</option>
+                                    </select>
+                                    <div class="invalid-feedback entidad">*Se requiere seleccionar una entidad.</div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea2">Detalle</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" maxlength="250"></textarea>
+                                <label for="detalleFormacionActualizar">Detalle</label>
+                                <textarea class="form-control inputDetalle" id="detalleFormacionActualizar" rows="5" maxlength="250" data-modal="actualizar" data-campo="detalle"></textarea>
+                                <div class="invalid-feedback detalle">*Se requiere detalle.</div>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-md-6">
-                                    <label for="fechaFin2">Fecha de Fin</label>
-                                    <input type="date"  class="form-control" id="fechaFin2">
+                                    <label for="fechaFinActualizar">Fecha de Fin</label>
+                                    <div class="datepicker date input-group p-0 shadow-sm">
+                                        <input type="text" placeholder="Fecha" class="form-control inputFecha" id="fechaFinActualizar" data-modal="actualizar" data-campo="fecha">
+                                        <div class="input-group-append"><span class="input-group-text px-4"><i class="fa fa-calendar"></i></span></div>
+                                        <div class="invalid-feedback fecha">*Se requiere fecha de fin.</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input type="radio" id="radio3" name="gender" value="visible2" checked>
-                                    <label for="visible2">Visible</label><br>
-                                    <input type="radio" id="radio4" name="gender" value="oculto2">
-                                    <label for="oculto2">Oculto</label><br>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkVisibleActualizar" data-modal="actualizar" checked>
+                                    <label class="form-check-label" for="checkVisibleActualizar">
+                                        Visible
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <div id="mensaje_2"></div>   
                         <div class="modal-footer">
-                            <button  id="cancelar2" type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button id="agregar2" type="submit" class="btn btn-primary">Agregar</button>
+                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -248,9 +271,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script src="../js/formacion1.js"></script>
-    <script src="../js/formacion2.js"></script>
+    <script src="../static/js/index.js"></script>
+    <script src="../static/js/formacion.js"></script>
 </body>
 
 </html>
