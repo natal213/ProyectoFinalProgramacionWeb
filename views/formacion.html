@@ -68,7 +68,7 @@
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
-                    <label class="custom-control-label" for="customRadioInline2">Educaci&oacuten</label>
+                    <label class="custom-control-label" for="customRadioInline2">Estudio</label>
                 </div>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
@@ -160,15 +160,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Detalle</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="10"></textarea>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="250"></textarea>
                             </div>
+                             
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-md-6">
                                     <label for="fechaFin">Fecha de Fin</label>
-                                    <div class="datepicker date input-group p-0 shadow-sm">
-                                        <input type="text" placeholder="Fecha" class="form-control" id="fechaFin">
-                                        <div class="input-group-append"><span class="input-group-text px-4"><i class="fa fa-calendar"></i></span></div>
-                                    </div>
+                                    <input type="date"  class="form-control" id="fechaFin">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -180,10 +178,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="mensaje"></div>    
+                        <div id="mensaje1"></div>    
                         <div class="modal-footer">
                             <button id="cancelar" type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" id="btnagregar">Agregar</button>
+                            <button id="agregar" type="submit" class="btn btn-primary" >Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -195,49 +193,45 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Actualizar Formaci&oacuten</h5>
                     </div>
-                    <form autocomplete="off">
+                    <form id="form_1" autocomplete="off">
                         <div class="modal-body">
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="selectTipo">Tipo</label>
-                                    <select class="form-control" id="selectTipo">
+                                    <label for="selectTipo2">Tipo</label>
+                                    <select class="form-control" id="selectTipo2">
                                         <option disabled selected="selected">Seleccione Tipo...</option>
                                         <option>Curso</option>
                                         <option>Estudio</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputEntidad">Entidad</label>
-                                    <input type="text" class="form-control" id="inputEntidad">
+                                    <label for="inputEntidad2">Entidad</label>
+                                    <input type="text" class="form-control" id="inputEntidad2">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Detalle</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                <label for="exampleFormControlTextarea2">Detalle</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea2" rows="5" maxlength="250"></textarea>
                             </div>
                             <div class="form-row justify-content-center">
                                 <div class="form-group col-md-6">
-                                    <label for="fechaFin">Fecha de Fin</label>
-                                    <div class="datepicker date input-group p-0 shadow-sm">
-                                        <input type="text" placeholder="Fecha" class="form-control" id="fechaFin">
-                                        <div class="input-group-append"><span class="input-group-text px-4"><i class="fa fa-calendar"></i></span></div>
-                                    </div>
+                                    <label for="fechaFin2">Fecha de Fin</label>
+                                    <input type="date"  class="form-control" id="fechaFin2">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        Visible
-                                    </label>
-                                    
-
+                                    <input type="radio" id="radio3" name="gender" value="visible2" checked>
+                                    <label for="visible2">Visible</label><br>
+                                    <input type="radio" id="radio4" name="gender" value="oculto2">
+                                    <label for="oculto2">Oculto</label><br>
                                 </div>
                             </div>
                         </div>
+                        <div id="mensaje_2"></div>   
                         <div class="modal-footer">
-                            <button type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Agregar</button>
+                            <button  id="cancelar2" type="reset" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="agregar2" type="submit" class="btn btn-primary">Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -255,7 +249,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
     <script src="../js/index.js"></script>
-    <script src="../js/formacion.js"></script>
+    <script src="../js/formacion1.js"></script>
+    <script src="../js/formacion2.js"></script>
 </body>
 
 </html>
