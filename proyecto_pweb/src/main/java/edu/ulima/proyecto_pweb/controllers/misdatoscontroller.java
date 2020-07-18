@@ -20,8 +20,9 @@ import edu.ulima.proyecto_pweb.repository.UsuariosRepositorio;
 @RequestMapping ("/misdatos")
 public class misdatoscontroller {
     private UsuariosRepositorio uRepository;
-    Usuario usuario;
-    Datos datos;
+    private Usuario usuario;
+    private Datos datos;
+    private Optional<Usuario> u;
     
     @Autowired
     public misdatoscontroller(UsuariosRepositorio urepository){
@@ -32,7 +33,7 @@ public class misdatoscontroller {
     //Obtienes todos los datos de un usuario
     @RequestMapping(value="/{id}",method=RequestMethod.GET)
     public ResponseEntity <Datos> verDatos(@PathVariable("id")Long id){
-        Optional<Usuario> u=uRepository.findById(id);
+        u=uRepository.findById(id);
     if(u.isPresent()){
         usuario=u.get();
         datos=usuario.getDatos();
@@ -45,14 +46,25 @@ public class misdatoscontroller {
 
     //Actualizar datos de un usuario
     @RequestMapping(value="/{id}",method=RequestMethod.PUT)
-    public ResponseEntity<Void> actualizarDatos(@RequestBody Datos datose){
-        
-        datos.setNombre(datose.getNombre());
-        datos.setApellido(datose.getApellido());
-        datos.setCelular(datose.getCelular());
-        datos.setLinkedIn(datose.getLinkedIn());
-        datos.setDatosrelevantes(datose.getDatosrelevantes());
-        uRepository.save(usuario);
+    public ResponseEntity<Void> actualizarDatos(@PathVariable("id")Long id, @RequestBody Datos datose){
+        u=null;
+        datos=null;
+        usuario=null;
+        u=uRepository.findById(id);
+        if(u.isPresent()){
+            usuario=u.get();
+            datos=usuario.getDatos();
+            datos.setNombre(datose.getNombre());
+            datos.setApellido(datose.getApellido());
+            datos.setCelular(datose.getCelular());
+            datos.setLinkedIn(datose.getLinkedIn());
+            datos.setDatosrelevantes(datose.getDatosrelevantes());
+            usuario.setDatos(datos);
+            uRepository.save(usuario);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

@@ -50,36 +50,36 @@ public class htmlcontroller {
     }
 
     //Controller para entidades http://locahost:9080/entidades.html
-    @RequestMapping(value="/entidades.html/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/entidades/{id}", method=RequestMethod.GET)
     public String entidades(HttpSession session){
         return "entidades";
     }
 
     @RequestMapping(value="/entidades.html", method=RequestMethod.GET)
     public String entidadesr(HttpSession session){
-        return "redirect:/entidades.html/"+id;
+        return "redirect:/entidades/"+id;
     }
 
     //Controller para experiencia http://locahost:9080/experiencia.html
-    @RequestMapping(value="/experiencia.html/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/experiencia/{id}", method=RequestMethod.GET)
     public String experiencia(HttpSession session){
         return "experiencia";
     }
 
     @RequestMapping(value="/experiencia.html", method=RequestMethod.GET)
     public String experienciar(HttpSession session){
-        return "redirect:/experiencia.html/"+id;
+        return "redirect:/experiencia/"+id;
     }
 
     //Controller para formacion http://locahost:9080/formacion.html
-    @RequestMapping(value="/formacion.html/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/formacion/{id}", method=RequestMethod.GET)
     public String formacion(HttpSession session){
         return "formacion";
     }
 
     @RequestMapping(value="/formacion.html", method=RequestMethod.GET)
     public String formacionr(HttpSession session){
-        return "redirect:/formacion.html/"+id;
+        return "redirect:/formacion/"+id;
     }
 
     /*Controller para el login en sus dos formas
@@ -88,29 +88,35 @@ public class htmlcontroller {
     public String principal(HttpSession session){
         return "login";
     }
-    @RequestMapping(value="/login.html", method=RequestMethod.GET)
+
+    @RequestMapping(value="/login", method=RequestMethod.GET)
     public String login(HttpSession session){
         return "login";
     }
 
+    @RequestMapping(value="/login.html", method=RequestMethod.GET)
+    public String loginr(HttpSession session){
+        return "redirect:/login";
+    }
+
     //Controller para ocupaciones http://locahost:9080/ocupaciones.html
-    @RequestMapping(value="/ocupaciones.html/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/ocupaciones/{id}", method=RequestMethod.GET)
     public String ocupaciones(HttpSession session){
         return "ocupaciones";
     }
 
     @RequestMapping(value="/ocupaciones.html", method=RequestMethod.GET)
     public String ocupacionesr(HttpSession session){
-        return "redirect:/ocupaciones.html/"+id;
+        return "redirect:/ocupaciones/"+id;
     }
 
-    @RequestMapping(value="/usuarios.html/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/usuarios/{id}", method=RequestMethod.GET)
     public String usuarios(HttpSession session){
         return "usuarios";
     }    
 
     @RequestMapping(value="/usuarios.html", method=RequestMethod.GET)
     public String usuariosr(HttpSession session){
-        return "redirect:/usuarios.html/"+id;
+        return "redirect:/usuarios/"+id;
     }  
 }
