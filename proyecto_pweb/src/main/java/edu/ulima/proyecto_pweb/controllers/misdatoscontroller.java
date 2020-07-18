@@ -45,8 +45,7 @@ public class misdatoscontroller {
 
     //Actualizar datos de un usuario
     @RequestMapping(value="/{id}",method=RequestMethod.PUT)
-    public ResponseEntity<Void> actualizarDatos(@PathVariable("id")Long id,
-                                                @RequestBody Datos datose){
+    public ResponseEntity<Void> actualizarDatos(@RequestBody Datos datose){
         
         datos.setNombre(datose.getNombre());
         datos.setApellido(datose.getApellido());
